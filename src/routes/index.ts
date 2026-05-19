@@ -6,11 +6,12 @@ import { resolveRoutes } from "../utils/resolveRoutes";
 import { getHash } from "../utils/getHash";
 import { SkeletonHome, SkeletonDetail } from "../template/Skeleton";
 
-export const routes = {
+type RouteHandler = (() => Promise<string>) | string;
+export const routes: Record<string, RouteHandler> = {
     '/': Home,
     '/:id': Character,
     '/contact': "Contact",
-}
+};
 
 export const router = async () => {
     const header: null | HTMLElement = document.querySelector('#header');
